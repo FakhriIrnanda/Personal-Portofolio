@@ -1,8 +1,9 @@
 <?php
 
-use App\Models\Portofolio;
+use App\Models\cv;
 use App\Models\section;
 use App\Models\setting;
+use App\Models\Portofolio;
 
 function get_setting_value($key)
 {
@@ -25,5 +26,11 @@ function get_section_data($key)
 function get_portofolio()
 {
     $data = Portofolio::all();
+    return $data;
+}
+
+function get_cv()
+{
+    $data = cv::all();
     return $data;
 }
