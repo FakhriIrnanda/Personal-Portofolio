@@ -44,6 +44,7 @@ $cv = get_cv();
           <ul class="navbar-nav ms-auto">
             <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portofolio">Portofolio</a></li>
             <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">About</a></li>
+            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#cv">Cv</a></li>
             <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#profile">Profile</a></li>
           </ul>
         </div>
@@ -124,7 +125,7 @@ $cv = get_cv();
 <!-- Cv Section-->
 <section class="page-section portfolio" id="cv">
   <div class="container">
-      <!-- Partner Section Heading-->
+      <!-- CV Section Heading-->
       <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">CV</h2>
       <!-- Icon Divider-->
       <div class="divider-custom">
@@ -152,10 +153,55 @@ $cv = get_cv();
               $i++;
           @endphp
           @endforeach
-       
       </div>
   </div>
 </section>
+
+    <!-- CV Modals-->
+    @php
+    $i = 1;
+    @endphp
+
+    @foreach ($cv as $item)
+    <!-- Cv Modal {{$i}} -->
+    <div class="portfolio-modal modal fade" id="portfolioModal{{$i}}" tabindex="-1" aria-labelledby="portfolioModal{{$i}}" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      <div class="modal-body text-center pb-5">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <!-- Cv Modal - Title-->
+              <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">{{$item->title}}</h2>
+              <!-- Icon Divider-->
+              <div class="divider-custom">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+              </div>
+              <!-- Cv Modal - Image-->
+              <img class="img-fluid rounded mb-5" src="{{Storage::url($item->thumbnail)}}" alt="..." />
+              <!-- C Modal - Text-->
+              {!! $item->content !!}
+              <div class="m-5">
+                Link : <a href="{{$item->link}}" target="blank">{{$item->link}}</a>
+              </div>
+              <button class="btn btn-primary" data-bs-dismiss="modal">
+                <i class="fas fa-xmark fa-fw"></i>
+                Close Window
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    @php
+    $i++;
+    @endphp
+    @endforeach
     <!-- Footer-->
     <footer class="footer text-center" id="profile">
       <div class="container">
@@ -249,6 +295,8 @@ $cv = get_cv();
         $i++;
     @endphp
     @endforeach
+
+    
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
